@@ -1,27 +1,45 @@
 import React, { Component } from "react";
+import { string, arrayOf } from "prop-types";
+import css from "./Select.module.css";
 
 export class Select extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false,
-      selected: props.selected
-    };
+  state = {
+    show: false
+  };
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     show: false,
+  //     selected: props.selected
+  //   };
+  // }
+  componentDidMount() {
+    document.addEventListener("click", this.hideItems);
   }
-  showItems = () => {
+  componentWillUnmount() {
+    document.removeEventListener("click", this.hideItems);
+  }
+  hideItems = () => {
+    this.setState({
+      show: false
+    });
+  };
+  showItems = event => {
+    event.nativeEvent.stopImmediatePropagation();
     this.setState({
       show: !this.state.show
     });
   };
   selectItem = item => {
+    this.props.onItemSelected(item);
+
     this.setState({
-      show: false,
-      selected: item
+      show: false
+      // selected: item
     });
   };
   render() {
-    let { items = [] } = this.props;
-    let { selected } = this.state;
+    let { items = [], selected } = this.props;
 
     if (!selected) {
       selected = items[0];
@@ -29,7 +47,7 @@ export class Select extends Component {
 
     return (
       <div className="Select">
-        <div className="Selected" onClick={this.showItems}>
+        <div className={css.Selected} onClick={this.showItems}>
           {selected}
         </div>
         {this.state.show && (
@@ -60,3 +78,8 @@ export class Select extends Component {
   4 - Mettre à jour selected au clic de l'item
   */
 }
+
+Select.propTypes = {
+  items: arrayOf(string).isRequired,
+  selected: string
+};
