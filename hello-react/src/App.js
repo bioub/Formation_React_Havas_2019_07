@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Hello } from './Hello';
 import { Clock } from './Clock';
 import { Counter } from './Counter';
+import { Select } from './Select';
 
 function App() {
   /*
@@ -41,6 +42,7 @@ function App() {
       {show && <Clock / >}
       <Counter />
       <Counter />
+      <Select selected="Romain" items={['Jean', 'Eric', 'Romain']} />
     </div>
   );
 }

@@ -1,14 +1,50 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-class Select extends Component {
-  state = {
-    show: false,
+export class Select extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+      selected: props.selected
+    };
+  }
+  showItems = () => {
+    this.setState({
+      show: !this.state.show
+    });
+  };
+  selectItem = item => {
+    this.setState({
+      show: false,
+      selected: item
+    });
   };
   render() {
+    let { items = [] } = this.props;
+    let { selected } = this.state;
+
+    if (!selected) {
+      selected = items[0];
+    }
+
     return (
       <div className="Select">
-        <div className="Selected"></div>
-        {this.state.show && <div className="Items"></div>}
+        <div className="Selected" onClick={this.showItems}>
+          {selected}
+        </div>
+        {this.state.show && (
+          <div className="Items">
+            {items.map(item => (
+              <div
+                className="Item"
+                key={item}
+                onClick={() => this.selectItem(item)}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   }
