@@ -3,6 +3,7 @@ import { Hello } from "./Hello";
 import { Clock } from "./Clock";
 import { Counter } from "./Counter";
 import { Select } from "./Select";
+import { Alert } from "./Alert";
 
 function App() {
   /*
@@ -38,6 +39,7 @@ function App() {
   // );
   return (
     <div className="App">
+      <Alert>Contenu</Alert>
       {hellos}
       <button onClick={() => setShow(!show)}>{show ? "Off" : "On"}</button>
       {show && <Clock />}
@@ -54,6 +56,7 @@ function App() {
         onItemSelected={prenom => setSelectedPrenom(prenom)}
       />
       <Hello name={selectedPrenom} />
+      <Hello name="Romain" />
     </div>
   );
 }
