@@ -4,11 +4,11 @@ import { CounterContainer } from "./containers/CounterContainer";
 function App() {
   return (
     <div className="App">
-      <CounterContainer />
-      <CounterContainer />
-      <CounterContainer />
-      <CounterContainer />
-      <CounterContainer />
+      <CounterContainer storeKey="abc" />
+      <CounterContainer storeKey="abc" />
+      <CounterContainer storeKey="def" />
+      <CounterContainer storeKey="pom" />
+      <CounterContainer storeKey="def" />
     </div>
   );
 }

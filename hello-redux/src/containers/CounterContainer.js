@@ -1,26 +1,24 @@
-import React, { Component } from "react";
-import { store } from "../store";
+import { connect } from "react-redux";
+
 import { Counter } from "../components/Counter";
 import { selectCount } from "../store/selectors";
 import { counterIncrement } from "../store/actions";
 
-export class CounterContainer extends Component {
-  state = {
-    count: 0
+function mapStateToProps(state, ownProps) {
+  return {
+    count: selectCount(state, ownProps.storeKey)
   };
-  componentDidMount() {
-    store.subscribe(() => {
-      this.setState({
-        count: selectCount(store.getState()),
-      });
-    });
-  }
-  handleIncrement = () => {
-    store.dispatch(counterIncrement());
-  };
-  render() {
-    return (
-      <Counter count={this.state.count} increment={this.handleIncrement} />
-    );
-  }
 }
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    increment() {
+      dispatch(counterIncrement(1, ownProps.storeKey));
+    }
+  };
+}
+
+export const CounterContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);
