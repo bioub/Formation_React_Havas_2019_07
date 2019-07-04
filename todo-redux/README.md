@@ -6,7 +6,7 @@
 
 ## Installer redux
 
-`npm install redux react-redux redux-devtools-extension`
+`npm install redux react-redux`
 
 ## Le state 
 
@@ -17,15 +17,15 @@ Le state devra avoir cette forme là
   newTodo: 'Achet',
   todos: [{
     id: 1,
-    text: 'Acheter du pain',
+    title: 'Acheter du pain',
     completed: false,
   }, {
     id: 2,
-    text: 'Aller au sport',
+    title: 'Aller au sport',
     completed: true,
   }, {
     id: 3,
-    text: 'Utiliser Redux',
+    title: 'Utiliser Redux',
     completed: false,
   }],
 }
@@ -43,6 +43,8 @@ Utiliser combineReducers pour pouvoir utiliser 2 reducers :
 Prévoir des valeurs initiales (comme avec count)
 
 ## Ecrire les reducers se basant sur les actions TODO_ADD, TODO_CHANGE
+
+Créer les constantes TODO_ADD, TODO_CHANGE
 
 Dans le newTodoReducer, traiter TODO_CHANGE. L'action TODO_CHANGE ressemblera à :
 
@@ -69,7 +71,22 @@ Dans le todosReducer, traiter TODO_ADD. L'action TODO_ADD ressemblera à :
 Attention dans le todosReducer on manipule un tableau, il faut
 créer un nouveau tableau (changement immuable)
 
+Avec l'extension Redux Devtools, tester via le bouton dispatch que les reducers
+fonctionnent
 
 ## Ecrire les versions connectées des composants TodoForm et TodoList
 
-Utiliser fonction connect et mapStateToProps pour connecter les composants.
+Ecrire la fonction mapStateToProps (les clés retournées sont les props des composant TodoForm : newTodo, TodoList: todos)
+
+Si possible rechercher dans le state avec un selecteur (selectors.js)
+
+Pour TodoForm il y aura un mapDispatchToProps avec 2 clés :
+- onTodoChange
+- onTodoAdd
+
+Qui doit dispatcher les actions correspondant (celle testées via l'extension)
+
+Si possible créer les actions via des actions creators (actions.js)
+
+## Optionnel (TODO_DELETE)
+

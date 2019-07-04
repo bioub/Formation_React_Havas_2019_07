@@ -2,7 +2,12 @@ import { combineReducers, createStore } from "redux";
 import { countersReducers } from "./reducers";
 
 const reducer = combineReducers({
-  counters: countersReducers
+  counters: countersReducers,
+  // todos: combineReducers({
+  //   filter: todosFilterReducer
+  //   items: todosItemsReducer,
+  //   newTodoValue: newTodoValueReducer,
+  // })
 });
 
 
