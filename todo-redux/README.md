@@ -62,7 +62,7 @@ Dans le todosReducer, traiter TODO_ADD. L'action TODO_ADD ressemblera à :
   type: 'TODO_ADD',
   payload: {
     id: 123,
-    text: 'Acheter du pain',
+    title: 'Acheter du pain',
     completed: false,
   }
 }

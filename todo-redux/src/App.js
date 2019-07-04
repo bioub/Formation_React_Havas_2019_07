@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import { TodoList } from "./todos/TodoList";
-import { TodoForm } from "./todos/components/TodoForm";
+import React from "react";
 import { TodoFormContainer } from "./todos/containers/TodoFormContainer";
 import { TodoListContainer } from "./todos/containers/TodoListContainer";
 
