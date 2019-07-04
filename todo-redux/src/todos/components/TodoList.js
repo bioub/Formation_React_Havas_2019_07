@@ -7,7 +7,9 @@ export function TodoList(props) {
     async function getData() {
       await props.onLoad();
     }
-    getData();
+    if (!props.todos.length) {
+      getData();
+    }
   }, []);
   return (
     <div className="TodoList">
